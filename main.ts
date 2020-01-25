@@ -132,6 +132,101 @@ b b b b b b b b b b b b b b b b
 2 2 2 2 2 2 2 b 2 2 2 2 2 2 2 b 
 2 2 2 2 2 2 2 b 2 2 2 2 2 2 2 b 
 `
+    //% blockIdentity=images._tile
+    export const tile8 = img`
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d 1 d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d b b d d d d d d 
+d d d d d d d d b b d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d b d d d d d d d d d d 
+d d d d d b d d d d d d d d d d 
+d d d d d d d d d d d d d 1 d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d 6 7 d 7 d 7 d d d d d d d d d 
+7 7 7 6 7 7 6 7 d d d d d d d d 
+`
+    //% blockIdentity=images._tile
+    export const tile9 = img`
+7 7 6 7 7 7 7 d d d d d d d d d 
+7 6 7 7 6 7 7 d d d d d d d d d 
+7 7 6 7 6 6 d d d d d d d d d d 
+d d d d d d d d d d d 1 1 d d d 
+d d d d d d d d d d d 1 1 d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d b d d d d d d d d d d 
+d d d d d d d d d d d d d b d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d 1 d d d d d d d b b d d d d 
+d d d d d d d d d d b b d d d d 
+d d d d d d b d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+`
+    //% blockIdentity=images._tile
+    export const tile10 = img`
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+`
+    //% blockIdentity=images._tile
+    export const tile11 = img`
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d d d c c c c c c c c c c c c c 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c 2 2 2 2 2 2 2 b 2 2 2 2 
+d d d c b b b b b b b b b b b b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 b 
+`
+    //% blockIdentity=images._tile
+    export const tile12 = img`
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+b 7 b b 7 d 7 b b 7 d b b 7 7 d 
+d d b d d d d b d 7 d d d 7 d d 
+d d d d d d d d d d d d d d d d 
+d 1 d d d d d d d d d d d d d d 
+d d d d d d d d d d d d b b d d 
+d d d d d d d d d d d d b b d d 
+d d d 1 1 d d d d d d d d d d d 
+d d d 1 1 d d d d d d d d d d d 
+d d d d d d d d b d d d d d d d 
+d d d d d d d d d d d d d d b d 
+d d d d d d d d d d d d d d d d 
+d d d d d d d d d d d d d d d d 
+d b d d d d 7 d b 7 d d d d 7 d 
+7 7 b b d 7 7 b b 7 7 b 7 7 7 d 
+7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+`
 }
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
     animation.stopAnimation(animation.AnimationTypes.All, MyPlayer)
@@ -301,6 +396,9 @@ f b b 4 1 f d d f 1 4 b b f
 . . . . f f b b f f . . . . 
 `)
 })
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
+    sprite.destroy(effects.fountain, 500)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
@@ -320,6 +418,10 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 . . . . . . . 7 7 . . . . . . . 
 . . . . . . . . 7 . . . . . . . 
 `, MyPlayer, 100 * xDirection, 100 * yDirection)
+})
+sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy(effects.hearts, 500)
+    numMonkeys += -1
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     xDirection = 1
@@ -447,6 +549,7 @@ c f b b b b b b b b b b b f
     true
     )
 })
+let myEnemy: Sprite = null
 let projectile: Sprite = null
 let yDirection = 0
 let xDirection = 0
@@ -469,17 +572,37 @@ f b b 4 1 f d d f 1 4 b b f
 . . f f 3 b 3 b 3 3 f f . . 
 . . . . f f b b f f . . . . 
 `, SpriteKind.Player)
+let MyFood = sprites.create(img`
+. . . . . 3 3 b 3 3 d d 3 3 . . 
+. . . . 3 1 1 d 3 d 1 1 1 1 3 . 
+. . . 3 d 1 1 1 d 1 1 1 d 3 1 3 
+. . 3 d d 1 1 1 d d 1 1 1 3 3 3 
+. 3 1 1 d 1 1 1 1 d d 1 1 b . . 
+. 3 1 1 1 d 1 1 1 1 1 d 1 1 3 . 
+. b d 1 1 1 d 1 1 1 1 1 1 1 3 . 
+. 4 b 1 1 1 1 d d 1 1 1 1 d 3 . 
+. 4 4 d 1 1 1 1 1 1 d d d b b . 
+. 4 d b d 1 1 1 1 1 1 1 1 3 . . 
+4 d d 5 b d 1 1 1 1 1 1 1 3 . . 
+4 5 d 5 5 b b d 1 1 1 1 d 3 . . 
+4 5 5 d 5 5 d b b b d d 3 . . . 
+4 5 5 5 d d d d 4 4 b 3 . . . . 
+. 4 5 5 5 4 4 4 . . . . . . . . 
+. . 4 4 4 . . . . . . . . . . . 
+`, SpriteKind.Food)
+MyFood.setPosition(300, 90)
+MyFood.follow(MyPlayer, 20)
 tiles.setTilemap(tiles.createTilemap(
-            hex`2000100002020203011414141414141414141418191a1b1c1d1e1f20211b1c1d30303030010303010204050505050505050506414241404140414041000031313131313002030201121212120a0a0a0a0a0a0745454545474748494900003131313131300103030212030a120a0a0a0a0a0a07000000001616161616161600000025003001020203120208120909090c0308090d0d0f0e1616161616161600000000003001030301120303120202121212124a4a4a4a4a4a35370035350035000000003001020202010201120303120303124a4a4a0f0f4a4a4a4a4a0000004c0000003001011501120202121212120303124a4a4a4a22334b4b4b4b4b4b4b4d000000270112121212010102020101030312104a4a4a223338383600000025282b2c2c2f4412010101030101010202030312104a4a4a223338383b3d3e3f25002a27002e0112030301010103030103030312104a344a223338383b3c2424000000292c2d0112010303370301020202130312104a344a223300003b3b24240000000013134412010202010301031501010312104a344a223300003a3a00000000390000130112121212121212121212120312134a4a4a4a22220000003e3f4040390000130103020103020303010303030312134a4a4a333333333333333333333333333301020102020301020302030303124a4a4a4a2323232323232323233232323232`,
+            hex`20001000040505050505054a4a4a4a4a01010101010101011153535353535353540101010b0101010101014a01010101010101010101010f5556565656565656570101010b0101010101014a01010101010101010101010f5801010101010101010101010b0a0a0a0a0a010101010101010101010101010f5801010101010101010101010b0a0a0a0a0a0101010101014c0101010101010f0101010101010101010101010b01010101010101010101014c0101010101010f0101010101010101010101010809090909094e01514b4b4b4d0101010101010f0101010101010101010101011005050505054f0150010101010101010101010f0101010101010101010101010b0a0a0a0a0a010101010101010101010101010f0101010101010101010101010b0a0a100a0a010101010101010101010101010f0101010101010101010101010b0a0a0a0a0a010101010101010101010101010f0101010101010101010101010b5252525252010101010101010101010101010f0101010101010101010101010b0101010101010101010101010101010101010f0101010101010101010101010b0101010101010101010101010101010101010f0101010101010101010101010b0101010101010101010101010101010101010f0101010101010101010101010809090909090909010101010101010101010101010101010101010101010101`,
             img`
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 2 . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . 2 . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . 2 2 2 2 2 . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
@@ -489,10 +612,36 @@ tiles.setTilemap(tiles.createTilemap(
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tilePath1,sprites.castle.tilePath2,sprites.castle.tilePath3,sprites.castle.tilePath6,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5,sprites.castle.tilePath4,sprites.castle.tilePath9,sprites.castle.tileDarkGrass1,sprites.castle.tileDarkGrass2,sprites.castle.tileDarkGrass3,sprites.builtin.forestTiles0,sprites.builtin.forestTiles1,sprites.builtin.brick,sprites.castle.rock1,sprites.castle.saplingOak,sprites.castle.saplingPine,sprites.builtin.field0,sprites.dungeon.buttonOrange,sprites.builtin.crowd0,sprites.builtin.crowd1,sprites.builtin.crowd2,sprites.builtin.crowd3,sprites.builtin.crowd4,sprites.builtin.crowd5,sprites.builtin.crowd6,sprites.builtin.crowd7,sprites.builtin.crowd8,sprites.builtin.crowd9,sprites.dungeon.buttonOrangeDepressed,sprites.dungeon.hazardWater,sprites.dungeon.hazardLava0,sprites.dungeon.hazardSpike,sprites.vehicle.roadTurn1,sprites.vehicle.roadTurn2,sprites.vehicle.roadIntersection1,sprites.vehicle.roadIntersection2,sprites.vehicle.roadTurn3,sprites.vehicle.roadIntersection3,sprites.vehicle.roadHorizontal,sprites.vehicle.roadTurn4,sprites.vehicle.roadVertical,sprites.vehicle.roadIntersection4,sprites.dungeon.buttonPinkDepressed,sprites.builtin.field1,sprites.dungeon.hazardHole,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.chestOpen,sprites.dungeon.collectibleInsignia,sprites.dungeon.doorLockedEast,sprites.dungeon.floorDark3,sprites.dungeon.floorDark0,sprites.dungeon.floorDark5,sprites.dungeon.floorDark1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenSwitchDown,sprites.dungeon.chestClosed,myTiles.tile1,myTiles.tile2,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.doorClosedWest,sprites.dungeon.floorMixed,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7],
+            [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tilePath1,sprites.castle.tilePath2,sprites.castle.tilePath3,sprites.castle.tilePath6,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5,sprites.castle.tilePath4,sprites.castle.tilePath9,sprites.castle.tileDarkGrass1,sprites.castle.tileDarkGrass2,sprites.castle.tileDarkGrass3,sprites.builtin.forestTiles0,sprites.builtin.forestTiles1,sprites.builtin.brick,sprites.castle.rock1,sprites.castle.saplingOak,sprites.castle.saplingPine,sprites.builtin.field0,sprites.dungeon.buttonOrange,sprites.builtin.crowd0,sprites.builtin.crowd1,sprites.builtin.crowd2,sprites.builtin.crowd3,sprites.builtin.crowd4,sprites.builtin.crowd5,sprites.builtin.crowd6,sprites.builtin.crowd7,sprites.builtin.crowd8,sprites.builtin.crowd9,sprites.dungeon.buttonOrangeDepressed,sprites.dungeon.hazardWater,sprites.dungeon.hazardLava0,sprites.dungeon.hazardSpike,sprites.vehicle.roadTurn1,sprites.vehicle.roadTurn2,sprites.vehicle.roadIntersection1,sprites.vehicle.roadIntersection2,sprites.vehicle.roadTurn3,sprites.vehicle.roadIntersection3,sprites.vehicle.roadHorizontal,sprites.vehicle.roadTurn4,sprites.vehicle.roadVertical,sprites.vehicle.roadIntersection4,sprites.dungeon.buttonPinkDepressed,sprites.builtin.field1,sprites.dungeon.hazardHole,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.chestOpen,sprites.dungeon.collectibleInsignia,sprites.dungeon.doorLockedEast,sprites.dungeon.floorDark3,sprites.dungeon.floorDark0,sprites.dungeon.floorDark5,sprites.dungeon.floorDark1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenSwitchDown,sprites.dungeon.chestClosed,myTiles.tile1,myTiles.tile2,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.doorClosedWest,sprites.dungeon.floorMixed,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,sprites.builtin.forestTiles2,sprites.builtin.forestTiles3,sprites.builtin.forestTiles5,sprites.builtin.forestTiles6,sprites.builtin.forestTiles7,sprites.builtin.forestTiles9],
             TileScale.Sixteen
         ))
 controller.moveSprite(MyPlayer, 50, 50)
 scene.cameraFollowSprite(MyPlayer)
 xDirection = 1
 yDirection = 0
+let numMonkeys = 0
+game.onUpdateInterval(500, function () {
+    if (numMonkeys < 4) {
+        myEnemy = sprites.create(img`
+. . . . f f f f f . . . . . . . 
+. . . f e e e e e f . . . . . . 
+. . f d d d d e e e f . . . . . 
+. c d f d d f d e e f f . . . . 
+. c d f d d f d e e d d f . . . 
+c d e e d d d d e e b d c . . . 
+c d d d d c d d e e b d c . f f 
+c c c c c d d d e e f c . f e f 
+. f d d d d d e e f f . . f e f 
+. . f f f f f e e e e f . f e f 
+. . . . f e e e e e e e f f e f 
+. . . f e f f e f e e e e f f . 
+. . . f e f f e f e e e e f . . 
+. . . f d b f d b f f e f . . . 
+. . . f d d c d d b b d f . . . 
+. . . . f f f f f f f f f . . . 
+`, SpriteKind.Enemy)
+        myEnemy.setPosition(0, 0)
+        tiles.placeOnRandomTile(myEnemy, sprites.castle.tileGrass1)
+        numMonkeys += 1
+    }
+})
