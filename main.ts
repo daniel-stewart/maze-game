@@ -521,6 +521,10 @@ sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, oth
     otherSprite.destroy(effects.fountain, 500)
     numMonkeys += -1
 })
+scene.onHitWall(SpriteKind.Enemy, function (sprite) {
+    temp = MyPlayer.x - sprite.x
+    sprite.setPosition(temp + sprite.x, 0)
+})
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     projectile = sprites.createProjectileFromSprite(img`
 . . . . . . . . . . . . . . . . 
@@ -611,6 +615,14 @@ c b b b b f 4 d d d d f . .
 . . . . . f f b b f f . . . 
 `)
 })
+scene.onOverlapTile(SpriteKind.Player, sprites.dungeon.chestClosed, function (sprite, location) {
+    tiles.setTileAt(location, sprites.dungeon.chestOpen)
+    tiles.setWallAt(tiles.getTileLocation(5, 7), false)
+    tiles.setTileAt(tiles.getTileLocation(5, 7), myTiles.tile18)
+    for (let value of tiles.getTilesByType(myTiles.tile1)) {
+        tiles.setWallAt(value, false)
+    }
+})
 controller.up.onEvent(ControllerButtonEvent.Pressed, function () {
     yDirection = -1
     xDirection = 0
@@ -692,8 +704,8 @@ b b b b b b b b b b b b b b b b
 . b b . . . . . . . . . . b b . 
 `)
 })
-let myEnemy: Sprite = null
 let projectile: Sprite = null
+let temp = 0
 let question = ""
 let yDirection = 0
 let xDirection = 0
@@ -716,45 +728,26 @@ f b b 4 1 f d d f 1 4 b b f
 . . f f 3 b 3 b 3 3 f f . . 
 . . . . f f b b f f . . . . 
 `, SpriteKind.Player)
-let MyFood = sprites.create(img`
-. . . . . 3 3 b 3 3 d d 3 3 . . 
-. . . . 3 1 1 d 3 d 1 1 1 1 3 . 
-. . . 3 d 1 1 1 d 1 1 1 d 3 1 3 
-. . 3 d d 1 1 1 d d 1 1 1 3 3 3 
-. 3 1 1 d 1 1 1 1 d d 1 1 b . . 
-. 3 1 1 1 d 1 1 1 1 1 d 1 1 3 . 
-. b d 1 1 1 d 1 1 1 1 1 1 1 3 . 
-. 4 b 1 1 1 1 d d 1 1 1 1 d 3 . 
-. 4 4 d 1 1 1 1 1 1 d d d b b . 
-. 4 d b d 1 1 1 1 1 1 1 1 3 . . 
-4 d d 5 b d 1 1 1 1 1 1 1 3 . . 
-4 5 d 5 5 b b d 1 1 1 1 d 3 . . 
-4 5 5 d 5 5 d b b b d d 3 . . . 
-4 5 5 5 d d d d 4 4 b 3 . . . . 
-. 4 5 5 5 4 4 4 . . . . . . . . 
-. . 4 4 4 . . . . . . . . . . . 
-`, SpriteKind.Food)
-MyFood.setPosition(300, 90)
 scene.setBackgroundColor(7)
 tiles.setTilemap(tiles.createTilemap(
-            hex`20001000040505050505054a4a4a4a4a01010101010101011153535353535353540f0f0f0b0101010101014a01010101010101010101010f5556565656565656570f0f0f0b0101010101014a01010101010144010101010f58656565656565655f0f0f0f0b0a0a0a0a0a0101010101015101014a0101010f5865656565656565650f0f0f0b0a0a0a0a0a0101010101014c01014a0101010f6463636363636363600f0f0f0b01010101010101010101014c01015c5c5c010f0f0f0f0f0f0f0f0f0f0f0f0f0809090909094e01514b4b4b4d0101010101010f0f0f0f0f0f0f0f0f0f0f0f0f1005050505054f01505a010101010101014c010f0f0f0f0f0f0f0f0f0f0f0f0f0b0a0a0a0a0a01014c010101010101514b4d010f0f0f0f0f0f0f0f0f0f0f0f0f0b0a0a100a0a01015b5c5c5c5d01014c0101010f0f0f0f0f0f0f0f0f0f0f0f0f0b0a0a0a0a0a0101010101014c01014c010101100f0f1153536b626768690f0f0b525252525201010101015e4c01014c4a4a4a100f0f55565656570f0f0f0f0f0b59595959590101514b4b4b4d01014c010101100f0f58656565650f0f0f0f0f0b595959595901014c0101010101015b0101010f0f0f64636363600f0f0f0f0f0b595959595901014c01010101010101010101100f0f0f0f0f0f0f0f0f0f0f0f08090909090909094c590101010101010101010e0f0f0f0f0f0f0f0f0f0f0f0f`,
+            hex`200010000405050505064a4a4a4a4a0101010101010101011153535353535353540f0f0f0b0a0a0a0a074a0101010101010101010101010f5556565656565656570f0f0f0b0a0a0a0a074a0101010101010144010101010f58656565656565655f0f0f0f0b0a0a0a0a074401010101015101014a0101010f5865656565656565650f0f0f0b0a0a0a0a074401010101014c01014a0101010f6463636363636363600f0f0f0b0a0a0a0a074401010101014c01015c5c5c010f0f0f0f0f0f0f0f0f0f0f0f0f080a0a0a0a0c4401514b4b4b4d0101010101010f0f0f0f0f0f0f0f0f0f0f0f0f070a0a0a0a104401505a010101010101014c010f0f0f0f0f0f0f0f0f0f440f0f040a0a0a0a0644014c010101010101514b4d010f0f0f0f0f0f0f0f0f0f0f0f0f0b0a0a430a0744015b5c5c5c5d01014c0101010f0f0f0f0f0f0f0f0f0f0f0f0f08090909090c4401010101014c01014c010101100f0f1153536b626768690f0f52525252525201010101015e4c01014c4a4a4a100f0f55565656570f0f0f0f0f0b59595959590101514b4b4b4d01014c010101100f0f58656565650f0f0f0f0f0b595959595901014c0101010101015b0101010f0f0f64636363600f0f0f0f0f0b595959595901014c01010101010101010101100f0f0f0f0f0f0f0f0f0f0f0f08090909090909094c590101014401010101010e0f0f0f0f0f0f0f0f0f0f0f0f`,
             img`
-. . . . . . . 2 2 2 2 2 . . . . . . . . 2 2 2 2 2 2 2 2 2 . . . 
-. . . . . . . 2 . . . . . . . . . . . . 2 . . . . . . . 2 . . . 
-. . . . . . . 2 . . . . . . . . . . . . 2 . . . . . . . 2 . . . 
-. . . . . . . . . . . . 2 . . 2 . . . . 2 . . . . . . . 2 . . . 
-. . . . . . . . . . . . 2 . . 2 . . . . 2 . . . . . . . 2 . . . 
-. . . . . . . . . . . . 2 . . 2 2 2 . . . . . . . . . . . . . . 
-. . . . . . . . 2 2 2 2 2 . . . . . . . . . . . . . . . . . . . 
-2 . . . . . . . 2 . . . . . . . . 2 . . . . . . . . . . . . . . 
-. . . . . . . . 2 . . . . . . 2 2 2 . . . . . . . . . . . . . . 
-. . . 2 . . . . 2 2 2 2 2 . . 2 . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . 2 . . 2 . . . 2 . . 2 2 2 2 2 2 2 2 . . 
-. 2 2 2 2 2 . . . . . . 2 . . 2 2 2 2 2 . . 2 . . . 2 . . . . . 
-. . . . . . . . 2 2 2 2 2 . . 2 . . . 2 . . 2 . . . . . . . . . 
-. . . . . . . . 2 . . . . . . 2 . . . . . . 2 . . . 2 . . . . . 
-. . . . . . . . 2 . . . . . . . . . . 2 . . . . . . . . . . . . 
-. . . . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+2 . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
+2 2 2 2 2 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
 `,
             [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tilePath1,sprites.castle.tilePath2,sprites.castle.tilePath3,sprites.castle.tilePath6,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5,sprites.castle.tilePath4,sprites.castle.tilePath9,sprites.castle.tileDarkGrass1,sprites.castle.tileDarkGrass2,sprites.castle.tileDarkGrass3,sprites.builtin.forestTiles0,sprites.builtin.forestTiles1,sprites.builtin.brick,sprites.castle.rock1,sprites.castle.saplingOak,sprites.castle.saplingPine,sprites.builtin.field0,sprites.dungeon.buttonOrange,sprites.builtin.crowd0,sprites.builtin.crowd1,sprites.builtin.crowd2,sprites.builtin.crowd3,sprites.builtin.crowd4,sprites.builtin.crowd5,sprites.builtin.crowd6,sprites.builtin.crowd7,sprites.builtin.crowd8,sprites.builtin.crowd9,sprites.dungeon.buttonOrangeDepressed,sprites.dungeon.hazardWater,sprites.dungeon.hazardLava0,sprites.dungeon.hazardSpike,sprites.vehicle.roadTurn1,sprites.vehicle.roadTurn2,sprites.vehicle.roadIntersection1,sprites.vehicle.roadIntersection2,sprites.vehicle.roadTurn3,sprites.vehicle.roadIntersection3,sprites.vehicle.roadHorizontal,sprites.vehicle.roadTurn4,sprites.vehicle.roadVertical,sprites.vehicle.roadIntersection4,sprites.dungeon.buttonPinkDepressed,sprites.builtin.field1,sprites.dungeon.hazardHole,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.chestOpen,sprites.dungeon.collectibleInsignia,sprites.dungeon.doorLockedEast,sprites.dungeon.floorDark3,sprites.dungeon.floorDark0,sprites.dungeon.floorDark5,sprites.dungeon.floorDark1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenSwitchDown,sprites.dungeon.chestClosed,myTiles.tile1,myTiles.tile2,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.doorClosedWest,sprites.dungeon.floorMixed,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,sprites.builtin.forestTiles2,sprites.builtin.forestTiles3,sprites.builtin.forestTiles5,sprites.builtin.forestTiles6,sprites.builtin.forestTiles7,sprites.builtin.forestTiles9,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile18,sprites.builtin.forestTiles11,sprites.builtin.forestTiles15,sprites.builtin.forestTiles19,sprites.builtin.forestTiles20,sprites.builtin.forestTiles14,sprites.builtin.forestTiles13,sprites.builtin.forestTiles10,sprites.builtin.forestTiles12,sprites.builtin.forestTiles24,sprites.builtin.forestTiles25,sprites.builtin.forestTiles26,sprites.builtin.forestTiles23,sprites.builtin.forestTiles22,sprites.builtin.forestTiles4],
             TileScale.Sixteen
@@ -783,31 +776,3 @@ tiles.placeOnRandomTile(myRandom, myTiles.tile18)
 xDirection = 1
 yDirection = 0
 let numMonkeys = 0
-game.onUpdateInterval(100, function () {
-    MyFood.setPosition(32, 32)
-})
-game.onUpdateInterval(500, function () {
-    if (numMonkeys < 4) {
-        myEnemy = sprites.create(img`
-. . . . f f f f f . . . . . . . 
-. . . f e e e e e f . . . . . . 
-. . f d d d d e e e f . . . . . 
-. c d f d d f d e e f f . . . . 
-. c d f d d f d e e d d f . . . 
-c d e e d d d d e e b d c . . . 
-c d d d d c d d e e b d c . f f 
-c c c c c d d d e e f c . f e f 
-. f d d d d d e e f f . . f e f 
-. . f f f f f e e e e f . f e f 
-. . . . f e e e e e e e f f e f 
-. . . f e f f e f e e e e f f . 
-. . . f e f f e f e e e e f . . 
-. . . f d b f d b f f e f . . . 
-. . . f d d c d d b b d f . . . 
-. . . . f f f f f f f f f . . . 
-`, SpriteKind.Enemy)
-        myEnemy.setPosition(0, 0)
-        tiles.placeOnRandomTile(myEnemy, myTiles.tile1)
-        numMonkeys += 1
-    }
-})
