@@ -321,9 +321,9 @@ b b b b b b b b b b b b b b b b
 2 2 2 b 2 2 2 2 2 2 2 b 2 2 2 2 
 2 2 2 b 2 2 2 2 2 2 2 b 2 2 2 2 
 c c c c b b b b b b b b b b b b 
-d d d c . . . . . . . . . . . . 
-d d d c . . . . . . . . . . . . 
-d d d c . . . . . . . . . . . . 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 2 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 2 
+d d d c 2 2 2 b 2 2 2 2 2 2 2 2 
 `
     //% blockIdentity=images._tile
     export const tile18 = img`
@@ -343,6 +343,63 @@ d d d c . . . . . . . . . . . .
 7 7 7 7 7 7 7 3 7 7 7 7 7 7 7 7 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 
+`
+    //% blockIdentity=images._tile
+    export const tile19 = img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 d d d 6 7 7 c c c 7 7 6 d d b 
+1 d d 6 7 c 5 c c c 5 c 7 6 d b 
+1 d 6 7 c 5 5 5 5 5 5 5 c 7 6 b 
+1 d d 6 7 5 6 7 7 6 6 5 7 6 d b 
+1 d d 6 7 5 6 6 7 6 5 5 7 6 d b 
+1 d d 6 7 5 5 6 7 6 5 7 7 6 d b 
+1 d d d d 7 5 6 7 6 5 7 d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+b b b b b b b b b b b b b b b b 
+`
+    //% blockIdentity=images._tile
+    export const tile20 = img`
+. . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . 
+. . . . . f f f f f f . . . . . 
+. . . f f 2 2 2 2 1 1 f f . . . 
+. . f 1 1 2 2 2 2 2 1 1 1 f . . 
+. f 1 1 2 2 1 1 2 2 2 2 2 2 f . 
+. f 2 2 2 1 1 1 1 2 2 1 1 2 f . 
+. f 1 2 2 1 1 1 1 2 1 1 1 1 f . 
+. f 1 1 2 2 1 1 2 2 1 1 1 1 f . 
+. f 1 1 2 2 2 2 2 2 2 1 1 2 f . 
+. f 1 2 2 f f f f f f 2 2 2 f . 
+. . f f f 1 f 1 1 f 1 f f f . . 
+. . . f 1 1 f 1 1 f 1 1 f . . . 
+. . . f 1 1 1 1 1 1 1 1 f . . . 
+. . . . f 1 1 1 1 1 1 f . . . . 
+. . . . . f f f f f f . . . . . 
+`
+    //% blockIdentity=images._tile
+    export const tile21 = img`
+d 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 d d d d d d d d d d d d d d b 
+1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 b 
+1 e d e d 1 d e d e 1 e d e d b 
+1 d e d e 1 e d e d 1 d e d e b 
+b b b b b b b b b b b b b b b b 
 `
 }
 controller.up.onEvent(ControllerButtonEvent.Released, function () {
@@ -549,6 +606,12 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSp
     otherSprite.destroy(effects.hearts, 500)
     numMonkeys += -1
     info.changeScoreBy(1)
+    if (info.score() >= 2) {
+        for (let value of tiles.getTilesByType(myTiles.tile14)) {
+            tiles.setWallAt(value, false)
+            tiles.setTileAt(value, sprites.dungeon.floorLight2)
+        }
+    }
 })
 controller.right.onEvent(ControllerButtonEvent.Pressed, function () {
     xDirection = 1
@@ -728,28 +791,66 @@ f b b 4 1 f d d f 1 4 b b f
 . . f f 3 b 3 b 3 3 f f . . 
 . . . . f f b b f f . . . . 
 `, SpriteKind.Player)
+let mySprite2 = sprites.create(img`
+. . . . . . . . . . . . . . 
+. . . . f f f f f f . . . . 
+. . f f 2 2 2 2 1 1 f f . . 
+. f 1 1 2 2 2 2 2 1 1 1 f . 
+f 1 1 2 2 1 1 2 2 2 2 2 2 f 
+f 2 2 2 1 1 1 1 2 2 1 1 2 f 
+f 1 2 2 1 1 1 1 2 1 1 1 1 f 
+f 1 1 2 2 1 1 2 2 1 1 1 1 f 
+f 1 1 2 2 2 2 2 2 2 1 1 2 f 
+f 1 2 2 f f f f f f 2 2 2 f 
+. f f f 1 f 1 1 f 1 f f f . 
+. . f 1 1 f 1 1 f 1 1 f . . 
+. . f 1 1 1 1 1 1 1 1 f . . 
+. . . f 1 1 1 1 1 1 f . . . 
+. . . . f f f f f f . . . . 
+. . . . . . . . . . . . . . 
+`, SpriteKind.Enemy)
+mySprite2.setPosition(20, 25)
+let mySprite = sprites.create(img`
+. . . . . . . e . . . . . . . . 
+. . . . . . e e e . . . . . . . 
+. . . . 8 8 8 8 8 e e e e . . . 
+. . . 8 8 8 8 8 8 8 e e . . . . 
+. . 8 8 8 8 d 8 8 8 8 . . . . . 
+. . d f 8 f d d 8 8 8 e e e . . 
+. . d f 8 f d d 8 8 8 8 e . . . 
+. 8 8 f 8 f d d 8 8 8 8 . . . . 
+. 8 d f 8 f d 8 8 8 8 8 e e . . 
+. 8 8 d 8 d 8 8 8 8 8 8 e . . . 
+. . . . d . . . 8 8 e 8 . . . . 
+. . 8 8 8 8 8 8 8 e e e 8 . . . 
+. . . d d d d 8 8 e e e 8 . . 8 
+. . d d d d d d 8 8 e e 8 e e 8 
+. . d d d d d e e 8 8 8 8 8 8 . 
+e e e d d d e e e e 8 8 8 8 . . 
+`, SpriteKind.Enemy)
+mySprite.setPosition(31, 200)
 scene.setBackgroundColor(7)
 tiles.setTilemap(tiles.createTilemap(
-            hex`200010000405050505064a4a4a4a4a0101010101010101011153535353535353540f0f0f0b0a0a0a0a074a0101010101010101010101010f5556565656565656570f0f0f0b0a0a0a0a074a0101010101010144010101010f58656565656565655f0f0f0f0b0a0a0a0a074401010101015101014a0101010f5865656565656565650f0f0f0b0a0a0a0a074401010101014c01014a0101010f6463636363636363600f0f0f0b0a0a0a0a074401010101014c01015c5c5c010f0f0f0f0f0f0f0f0f0f0f0f0f080a0a0a0a0c4401514b4b4b4d0101010101010f0f0f0f0f0f0f0f0f0f0f0f0f070a0a0a0a104401505a010101010101014c010f0f0f0f0f0f0f0f0f0f440f0f040a0a0a0a0644014c010101010101514b4d010f0f0f0f0f0f0f0f0f0f0f0f0f0b0a0a430a0744015b5c5c5c5d01014c0101010f0f0f0f0f0f0f0f0f0f0f0f0f08090909090c4401010101014c01014c010101100f0f1153536b626768690f0f52525252525201010101015e4c01014c4a4a4a100f0f55565656570f0f0f0f0f0b59595959590101514b4b4b4d01014c010101100f0f58656565650f0f0f0f0f0b595959595901014c0101010101015b0101010f0f0f64636363600f0f0f0f0f0b595959595901014c01010101010101010101100f0f0f0f0f0f0f0f0f0f0f0f08090909090909094c590101014401010101010e0f0f0f0f0f0f0f0f0f0f0f0f`,
+            hex`200010000102010203108181828300000000000000000000000000000000000000000000010203030315846e8449000000000000000000000000000000000000000000000101030301108481824900000000000000000000000000000000000000000000030303010215596e6e6e000000000000000000000000000000000000000000000302010303147780807600000000000000000000000000000000000000000000044f0a0a0610777f7f47000000000000000000000000000000000000000000000b0a0a0a07107777777a000000000000000000000000000000000000000000000b0a0a0a07147d39777612000000000000000000000000000000000000000000080a0a0a0c10777a7b7512000000000000000000000000000000000000000000136f6f6d33137776484612000000000000000000000000000000000000000000596f596f595077477978120000000000000000000000000000000000000000006f596f596f507777777612000000000000000000000000000000000000000000596f596f59507777777612000000000000000000000000000000000000000000346f6f6f6f5b5c5d7776120000000000000000000000000000000000000000006f6f6f6f6f716f4c4a761200000000000000000000000000000000000000000074747474747474745a7512000000000000000000000000000000000000000000`,
             img`
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-2 . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . 
-2 2 2 2 2 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . 2 2 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . 2 2 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 2 2 . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+2 2 2 . 2 2 . . 2 2 . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . 2 2 2 . . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . 2 2 . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . 2 . . . . . . . . . . . . . . . . . . . . . . . 
 `,
-            [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tilePath1,sprites.castle.tilePath2,sprites.castle.tilePath3,sprites.castle.tilePath6,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5,sprites.castle.tilePath4,sprites.castle.tilePath9,sprites.castle.tileDarkGrass1,sprites.castle.tileDarkGrass2,sprites.castle.tileDarkGrass3,sprites.builtin.forestTiles0,sprites.builtin.forestTiles1,sprites.builtin.brick,sprites.castle.rock1,sprites.castle.saplingOak,sprites.castle.saplingPine,sprites.builtin.field0,sprites.dungeon.buttonOrange,sprites.builtin.crowd0,sprites.builtin.crowd1,sprites.builtin.crowd2,sprites.builtin.crowd3,sprites.builtin.crowd4,sprites.builtin.crowd5,sprites.builtin.crowd6,sprites.builtin.crowd7,sprites.builtin.crowd8,sprites.builtin.crowd9,sprites.dungeon.buttonOrangeDepressed,sprites.dungeon.hazardWater,sprites.dungeon.hazardLava0,sprites.dungeon.hazardSpike,sprites.vehicle.roadTurn1,sprites.vehicle.roadTurn2,sprites.vehicle.roadIntersection1,sprites.vehicle.roadIntersection2,sprites.vehicle.roadTurn3,sprites.vehicle.roadIntersection3,sprites.vehicle.roadHorizontal,sprites.vehicle.roadTurn4,sprites.vehicle.roadVertical,sprites.vehicle.roadIntersection4,sprites.dungeon.buttonPinkDepressed,sprites.builtin.field1,sprites.dungeon.hazardHole,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.chestOpen,sprites.dungeon.collectibleInsignia,sprites.dungeon.doorLockedEast,sprites.dungeon.floorDark3,sprites.dungeon.floorDark0,sprites.dungeon.floorDark5,sprites.dungeon.floorDark1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenSwitchDown,sprites.dungeon.chestClosed,myTiles.tile1,myTiles.tile2,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.doorClosedWest,sprites.dungeon.floorMixed,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,sprites.builtin.forestTiles2,sprites.builtin.forestTiles3,sprites.builtin.forestTiles5,sprites.builtin.forestTiles6,sprites.builtin.forestTiles7,sprites.builtin.forestTiles9,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile18,sprites.builtin.forestTiles11,sprites.builtin.forestTiles15,sprites.builtin.forestTiles19,sprites.builtin.forestTiles20,sprites.builtin.forestTiles14,sprites.builtin.forestTiles13,sprites.builtin.forestTiles10,sprites.builtin.forestTiles12,sprites.builtin.forestTiles24,sprites.builtin.forestTiles25,sprites.builtin.forestTiles26,sprites.builtin.forestTiles23,sprites.builtin.forestTiles22,sprites.builtin.forestTiles4],
+            [myTiles.tile0,sprites.castle.tileGrass1,sprites.castle.tileGrass2,sprites.castle.tileGrass3,sprites.castle.tilePath1,sprites.castle.tilePath2,sprites.castle.tilePath3,sprites.castle.tilePath6,sprites.castle.tilePath7,sprites.castle.tilePath8,sprites.castle.tilePath5,sprites.castle.tilePath4,sprites.castle.tilePath9,sprites.castle.tileDarkGrass1,sprites.castle.tileDarkGrass2,sprites.castle.tileDarkGrass3,sprites.builtin.forestTiles0,sprites.builtin.forestTiles1,sprites.builtin.brick,sprites.castle.rock1,sprites.castle.saplingOak,sprites.castle.saplingPine,sprites.builtin.field0,sprites.dungeon.buttonOrange,sprites.builtin.crowd0,sprites.builtin.crowd1,sprites.builtin.crowd2,sprites.builtin.crowd3,sprites.builtin.crowd4,sprites.builtin.crowd5,sprites.builtin.crowd6,sprites.builtin.crowd7,sprites.builtin.crowd8,sprites.builtin.crowd9,sprites.dungeon.buttonOrangeDepressed,sprites.dungeon.hazardWater,sprites.dungeon.hazardLava0,sprites.dungeon.hazardSpike,sprites.vehicle.roadTurn1,sprites.vehicle.roadTurn2,sprites.vehicle.roadIntersection1,sprites.vehicle.roadIntersection2,sprites.vehicle.roadTurn3,sprites.vehicle.roadIntersection3,sprites.vehicle.roadHorizontal,sprites.vehicle.roadTurn4,sprites.vehicle.roadVertical,sprites.vehicle.roadIntersection4,sprites.dungeon.buttonPinkDepressed,sprites.builtin.field1,sprites.dungeon.hazardHole,sprites.castle.rock2,sprites.castle.shrub,sprites.dungeon.collectibleRedCrystal,sprites.dungeon.collectibleBlueCrystal,sprites.dungeon.chestOpen,sprites.dungeon.collectibleInsignia,sprites.dungeon.doorLockedEast,sprites.dungeon.floorDark3,sprites.dungeon.floorDark0,sprites.dungeon.floorDark5,sprites.dungeon.floorDark1,sprites.dungeon.greenOuterNorthWest,sprites.dungeon.greenOuterNorth0,sprites.dungeon.greenOuterNorth1,sprites.dungeon.greenOuterNorth2,sprites.dungeon.greenSwitchDown,sprites.dungeon.chestClosed,myTiles.tile1,myTiles.tile2,sprites.dungeon.doorClosedEast,sprites.dungeon.darkGroundSouthWest1,sprites.dungeon.doorClosedWest,sprites.dungeon.floorMixed,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,sprites.builtin.forestTiles2,sprites.builtin.forestTiles3,sprites.builtin.forestTiles5,sprites.builtin.forestTiles6,sprites.builtin.forestTiles7,sprites.builtin.forestTiles9,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile18,sprites.builtin.forestTiles11,sprites.builtin.forestTiles15,sprites.builtin.forestTiles19,sprites.builtin.forestTiles20,sprites.builtin.forestTiles14,sprites.builtin.forestTiles13,sprites.builtin.forestTiles10,sprites.builtin.forestTiles12,sprites.builtin.forestTiles24,sprites.builtin.forestTiles25,sprites.builtin.forestTiles26,sprites.builtin.forestTiles23,sprites.builtin.forestTiles22,sprites.builtin.forestTiles4,sprites.dungeon.stairNorth,sprites.dungeon.floorLight0,sprites.dungeon.floorLight2,sprites.castle.rock0,sprites.dungeon.floorLight5,myTiles.tile19,myTiles.tile20,myTiles.tile21,sprites.dungeon.darkGroundSouthEast0,sprites.dungeon.darkGroundEast,sprites.dungeon.darkGroundCenter,sprites.dungeon.darkGroundNorthEast0,sprites.dungeon.darkGroundNorth,sprites.dungeon.darkGroundNorthWest1,sprites.dungeon.darkGroundSouth,sprites.dungeon.doorOpenSouth,sprites.dungeon.doorLockedWest,sprites.dungeon.darkGroundNorthEast1,sprites.dungeon.doorLockedSouth,sprites.dungeon.doorLockedNorth,sprites.dungeon.floorLight1,sprites.dungeon.floorLightMoss,sprites.dungeon.floorLight3,sprites.dungeon.floorLight4,sprites.dungeon.doorClosedSouth],
             TileScale.Sixteen
         ))
 controller.moveSprite(MyPlayer, 50, 50)
